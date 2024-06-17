@@ -1,0 +1,117 @@
+/* Estilos para PerfilAdministrador */
+.container{
+  display: flex;
+}
+
+
+.profileContainer {
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+ 
+  padding: 20px;
+  height: 100vh;
+  margin-left: 250px;
+}
+
+.profileCard {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  max-width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profileCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profileHeader {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.profileHeader h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.imageContainer {
+  margin-top: 10px;
+}
+
+.profileImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profileInfo {
+  padding: 20px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eaeaea;
+  transition: background-color 0.3s;
+}
+
+.infoItem:last-child {
+  border-bottom: none;
+}
+
+.infoItem:hover {
+  background-color: #f7f7f7;
+}
+
+.infoIcon {
+  font-size: 20px;
+  color: #007bff;
+  margin-right: 15px;
+}
+
+.infoText {
+  font-size: 16px;
+  color: #333;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.editButton, .saveButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.editButton:hover, .saveButton:hover {
+  background-color: #0056b3;
+}
+
+.saveButton {
+  background-color: #28a745;
+}
+
+.saveButton:hover {
+  background-color: #218838;
+}

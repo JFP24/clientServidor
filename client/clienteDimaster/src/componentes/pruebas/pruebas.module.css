@@ -1,0 +1,96 @@
+.containerPrincipal {
+    display: flex;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: flex-start;
+    height: calc(100vh - 56px); /* Resta la altura del Navbar */
+    padding-top: 35px;
+    width: 100%;
+}
+
+.volver {
+    padding: 10px;
+    margin: 10px;
+    margin-left: 20px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+.conectarExterno,
+.desconectarExterno {
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.conectarExterno {
+    border: 1px solid green;
+    color: green;
+}
+
+.desconectarExterno {
+    border: 1px solid red;
+    color: red;
+}
+
+.mensaje {
+    margin-top: 10px;
+}
+
+.area {
+    display: flex;
+    width: 100%;
+}
+
+.inputsContainer {
+    width: 45%;
+   
+}
+
+.inputWrapper {
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente */
+    margin-bottom: 10px;
+}
+
+.input {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 20px;
+   
+}
+
+.button {
+    padding: 9px 10px; /* Reducir el padding para hacer el botón más pequeño */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 8px; /* Agregar margen entre el botón y el input */
+}
+
+.textAreaContainer {
+    width: 40%;
+    margin-left: 10px;
+}
+
+.textArea {
+    width: 100%;
+    height: 440px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+}

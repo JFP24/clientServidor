@@ -1,0 +1,381 @@
+.containerPrincipal {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f4f6f8;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.headerContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hotelInfo {
+  flex: 1;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.filter label {
+  margin-right: 10px;
+  font-weight: 700;
+  color: #0077B6;
+}
+
+.filter select, .filter input {
+  padding: 8px;
+  border: 1px solid #0077B6;
+  border-radius: 5px;
+  color: #0077B6;
+  transition: all 0.3s ease;
+}
+
+.filter select:focus, .filter input:focus {
+  outline: none;
+  border-color: #023E8A;
+}
+
+.filter select {
+  appearance: none;
+  background-image: url('data:image/svg+xml,<svg fill="%23023E8A" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  cursor: pointer;
+  padding-right: 30px;
+}
+
+.statsAndLegend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.ocupaciones {
+  display: flex;
+  gap: 10px;
+}
+
+.habOcupadas, .habDesocupadas {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: white;
+}
+
+.habOcupadas {
+  background-color: #ff6b6b;
+}
+
+.habDesocupadas {
+  background-color: #48c774;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.legendItem svg {
+  margin-right: 5px;
+  font-size: 24px; /* Tamaño de los íconos de la leyenda */
+}
+
+.noMolestarIcon {
+  color: red;
+}
+
+.lavanderiaIcon {
+  color: blue;
+}
+
+.houseKeepingIcon {
+  color: lightblue;
+}
+
+.puertaIcon {
+  color: rgb(160, 160, 4);
+}
+
+.checkinIcon {
+  color: green;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.roomCardLink {
+  text-decoration: none;
+}
+
+.roomCard {
+  border-radius: 5px;
+  background-color: white;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  border: 2px solid #dcdcdc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.roomCard:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.roomNumber {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+}
+
+.roomStatus {
+  font-size: 24px;
+  color: #555;
+}
+
+.roomCard.ocupada .roomStatus {
+  color: #ff6b6b;
+}
+
+.roomCard.desocupada .roomStatus {
+  color: #b4b4b4;
+}
+
+.ocupadaIcon{
+  font-size: 35px;
+}
+.desocupadaIcon{
+  font-size: 35px;
+
+}
+.iconsContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.icon {
+  font-size: 30px;
+  color: #c4c2c2;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icon.noMolestar {
+  color: red;
+  animation: pulseRed 1s infinite;
+}
+
+.icon.lavanderia {
+  color: blue;
+  animation: pulseBlue 1s infinite;
+}
+
+.icon.houseKeeping {
+  color: rgb(127, 211, 239);
+  animation: pulseLightBlue 1s infinite;
+}
+
+.icon.puerta {
+  color: rgb(160, 160, 4);
+  animation: pulseYellow 1s infinite;
+}
+
+.icon.checkin {
+  color: green;
+  animation: pulseGreen 1s infinite;
+}
+
+@keyframes pulseRed {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseBlue {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseLightBlue {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseYellow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGreen {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  margin: 0 2px;
+  border: none;
+  background-color: #0077B6;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #005f8e;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination .active {
+  background-color: #005f8e;
+}
+
+@media (max-width: 1200px) {
+  .gridContainer {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    margin-left: 0;
+  }
+
+  .headerContent, .statsAndLegend {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gridContainer {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .roomCardLink {
+    margin-bottom: 20px;
+  }
+
+  .burgerMenu {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter label, .filter input, .filter select {
+    width: 100%;
+  }
+
+  .filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter label {
+    margin-bottom: 5px;
+  }
+
+  .iconsContainer {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .icon {
+    font-size: 18px; /* Tamaño de los íconos reducido para pantallas pequeñas */
+    margin: 5px;
+  }
+
+  .gridContainer {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}

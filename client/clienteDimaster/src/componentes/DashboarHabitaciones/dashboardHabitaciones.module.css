@@ -1,0 +1,225 @@
+.containerPpal {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+}
+
+.hasbita {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.dimasters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.agregar {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.agregar:hover {
+  background-color: #0056b3;
+}
+
+.habita {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  font-weight: bold;
+}
+
+.habitaciones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 12px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dee2e6;
+  align-items: center;
+}
+
+.eliminar, .actualizar, .detalles {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.eliminar {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.eliminar:hover {
+  background-color: #c82333;
+}
+
+.actualizar {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.actualizar:hover {
+  background-color: #e0a800;
+}
+
+.detalles {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.detalles:hover {
+  background-color: #0056b3;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.formContainer {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 700px; /* Ancho ajustado */
+  max-width: 100%;
+  
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+}
+form h2 {
+  margin-bottom: 20px;
+}
+
+form label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+form input {
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+form button {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+form button[type="button"] {
+  background-color: #6c757d;
+  color: #fff;
+  
+}
+
+form button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+.columnContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.column:last-child {
+  margin-right: 0;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  margin: 0 2px;
+  border: none;
+  background-color: #969696;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #adadad;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination .active {
+  background-color: #5ca2ff;
+}

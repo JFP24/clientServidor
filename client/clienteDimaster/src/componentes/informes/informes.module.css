@@ -1,0 +1,153 @@
+.contenedor {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: auto; /* Permitir desplazamiento vertical */
+    height: 100vh; /* Altura de la ventana para desplazamiento */
+}
+
+.regresar {
+    background-color: #357ABD;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.regresar:hover{
+    background-color: #357ABD;
+    transform: translateY(-2px);
+}
+
+.filtros {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filtro {
+    margin-right: 20px;
+    min-width: 200px;
+}
+
+.datePicker {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border 0.3s ease;
+}
+
+.datePicker:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.select__control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border 0.3s ease;
+}
+
+.select__control:hover {
+    border-color: #007bff;
+}
+
+.select__menu {
+    font-size: 14px;
+}
+
+.seccionHotel {
+    margin-bottom: 40px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.seccionHotel h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.grafico {
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.grafico:hover {
+    transform: scale(1.05);
+}
+
+.grafico .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.grafico h4 {
+    font-size: 20px;
+    color: #555;
+}
+
+.fecha {
+    font-size: 14px;
+    color: #999;
+}
+
+.chartContainer {
+    width: 100%;
+    height: 300px; /* Ajustar la altura para hacer el gráfico más pequeño */
+    position: relative;
+    margin-bottom: 20px; /* Separar las gráficas */
+}
+
+.chartContainer canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.informe {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.informe h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.informe p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
