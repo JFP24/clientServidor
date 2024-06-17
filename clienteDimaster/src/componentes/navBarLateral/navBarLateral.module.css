@@ -36,10 +36,8 @@
 }
 
 .logo {
-  width: 80%;
-  margin: 20px 0;
-  align-self: flex-start;
-  padding-left: 20px;
+  width: 100%;
+
 }
 
 .nav {
@@ -82,6 +80,7 @@
   border-radius: 50%;
   padding: 4px 8px;
   margin-left: auto;
+  margin-left: 10px;
   font-size: 12px;
 }
 
@@ -92,7 +91,6 @@
 }
 
 .logout .a {
-  background-color: #ff4d4d;
   color: white;
   border-radius: 10px;
 }

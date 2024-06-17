@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import styles from './panelAdministrativo.module.css';
 import { useAuth } from '../../context/authContext';
-import { MdLocalLaundryService, MdOutlineCleaningServices, MdMeetingRoom, MdCheckCircle, MdHotel, MdOutlineHotel, MdDoNotDisturb } from 'react-icons/md';
-import { TbHotelService } from 'react-icons/tb'; // Importamos el ícono TbHotelService
-import { FaUsers } from 'react-icons/fa'; // Importamos el ícono FaUsers
+import { MdLocalLaundryService, MdOutlineCleaningServices, MdMeetingRoom, MdCheckCircle } from 'react-icons/md';
+import { TbHotelService } from 'react-icons/tb';
+import { FaUsers } from 'react-icons/fa';
 import { useHotel } from '../../context/hotelContext';
 import NavBarLateral from '../navBarLateral/navBarLateral.jsx';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:3000'); // Asegúrate de que la URL coincida con tu servidor
+const socket = io('http://localhost:3000');
 
 const PanelAdministrativo = () => {
   const { getProfile, isAuthenticated, profile, logout } = useAuth();
@@ -16,6 +16,7 @@ const PanelAdministrativo = () => {
   const [habitacionesFiltradas, setHabitacionesFiltradas] = useState([]);
   const [filtro, setFiltro] = useState('todos');
   const [busquedaNumeroHabitacion, setBusquedaNumeroHabitacion] = useState('');
+  const [currentFilter, setCurrentFilter] = useState('');
 
   const idHotel = profile?.userProfile?.hotel.map((e) => e.id);
 
@@ -56,42 +57,38 @@ const PanelAdministrativo = () => {
   }, [filtro, busquedaNumeroHabitacion, profile.userProfile?.hotel]);
 
   useEffect(() => {
-    socket.on('updateLavanderia', (data) => {
-      setHabitacionesFiltradas((prevState) => prevState.map(habitacion =>
-        habitacion._id === data.id ? { ...habitacion, lavanderia: data.lavanderia } : habitacion
-      ));
-    });
+    const handleUpdateLavanderia = (data) => {
+      console.log(data)
+      setHabitacionesFiltradas((prevState) =>
+        prevState.map(habitacion =>
+          habitacion.habitacionID === data.id ? { ...habitacion, lavanderia: data.valor } : habitacion
+        )
+      );
+    };
+
+    const handleUpdateNoMolestar = (data) => {
+      console.log(data)
+      setHabitacionesFiltradas((prevState) =>
+        prevState.map(habitacion =>
+          habitacion.habitacionID === data.id ? { ...habitacion, noMolestar: data.valor } : habitacion
+        )
+      );
+    };
+
+    socket.on('updateLavanderia', handleUpdateLavanderia);
+    socket.on('updateNoMolestar', handleUpdateNoMolestar);
 
     return () => {
-      socket.off('updateLavanderia');
+      socket.off('updateLavanderia', handleUpdateLavanderia);
+      socket.off('updateNoMolestar', handleUpdateNoMolestar);
     };
   }, []);
 
-  useEffect(() => {
-    socket.on('updateNoMolestar', (data) => {
-      setHabitacionesFiltradas((prevState) => prevState.map(habitacion =>
-        habitacion._id === data.id ? { ...habitacion, noMolestar: data.noMolestar } : habitacion
-      ));
-    });
 
-    return () => {
-      socket.off('updateNoMolestar');
-    };
-  }, []);
-  useEffect(() => {
-    socket.on('updateNoAseo', (data) => {
-      setHabitacionesFiltradas((prevState) => prevState.map(habitacion =>
-        habitacion._id === data.id ? { ...habitacion, houseKeeping: data.houseKeeping } : habitacion
-      ));
-    });
-
-    return () => {
-      socket.off('updateNoAseo');
-    };
-  }, []);
 
   const handleFiltroChange = (event) => {
     setFiltro(event.target.value);
+    setCurrentFilter(event.target.options[event.target.selectedIndex].text);
   };
 
   const handleBusquedaNumeroHabitacionChange = (event) => {
@@ -100,10 +97,11 @@ const PanelAdministrativo = () => {
 
   const handleFilterChange = (filterType) => {
     setFiltro(filterType);
+    setCurrentFilter(filterType.charAt(0).toUpperCase() + filterType.slice(1));
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 28;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -182,10 +180,10 @@ const PanelAdministrativo = () => {
             <div className={styles.legendItem}>
               <MdCheckCircle className={styles.checkinIcon} /> Check-in
             </div>
-            <div className={styles.legendItem}>
-              <TbHotelService className={styles.hotelServiceIcon} /> Servicio de Hotel
-            </div>
           </div>
+        </div>
+        <div className={styles.currentFilter}>
+          <p><strong>{currentFilter.toUpperCase() || 'TODOS'}</strong></p>
         </div>
         {profile?.userProfile?.hotel[0]?.habitaciones.length !== 0 ? (
           <div className={styles.gridContainer}>
@@ -233,4 +231,3 @@ const PanelAdministrativo = () => {
 };
 
 export default PanelAdministrativo;
- 

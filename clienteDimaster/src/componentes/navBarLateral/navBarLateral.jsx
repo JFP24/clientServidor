@@ -29,19 +29,19 @@ const NavBarLateral = ({ idHotel, logout, profile, handleFilterChange }) => {
   useEffect(() => {
     socket.on('updateNoMolestar', (data) => {
      // console.log(data)
-      setNoMolestarCount(data.noMolestar)
+      setNoMolestarCount(data.valor)
     });
   },[])
   useEffect(() => {
     socket.on('updateLavanderia', (data) => {
     //  console.log(data)
-      setLavanderiaCount(data.lavanderia)
+      setLavanderiaCount(data.valor)
     });
   },[])
   useEffect(() => {
     socket.on('updateNoAseo', (data) => {
       console.log(data)
-      setHouseKeepingCount(data.houseKeeping)
+      setHouseKeepingCount(data.valor)
     });
   },[])
 
