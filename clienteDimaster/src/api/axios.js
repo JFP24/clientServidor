@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "http://api-servidor-d8f1.onrender.com/api/v1",
+    baseURL: "https://api-servidor-d8f1.onrender.com/api/v1",
     withCredentials: true // Permitir cookies en las solicitudes
 });
 
