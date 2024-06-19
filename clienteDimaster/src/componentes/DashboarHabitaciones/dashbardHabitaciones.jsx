@@ -6,21 +6,13 @@ import NavBarLateral from '../navBarLateral/navBarLateral';
 
 const DashboardHabitaciones = () => {
   const { id } = useParams();
-  const { hotelIDs, hotelid, eliminarHabitaciones, actualizarHabitaciones, conectarAllDimaster } = useHotel();
+  const {  hotelid, eliminarHabitaciones, actualizarHabitaciones } = useHotel();
   const [showForm, setShowForm] = useState(false);
   const [selectedHabitacion, setSelectedHabitacion] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  useEffect(() => {
-    hotelIDs(id);
-    // Ejecutar la función cada 10 segundos (10000 milisegundos)
-    const intervalId = setInterval(() => {
-      handleConectarDimaster();
-    }, 10000);
-    // Limpieza del intervalo cuando el componente se desmonta
-    return () => clearInterval(intervalId);
-  }, [id]);
+ 
 
   const handleEliminarHabitacion = async (id) => {
     const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar esta habitacion?");
@@ -50,9 +42,6 @@ const DashboardHabitaciones = () => {
     window.location.reload();
   };
 
-  const handleConectarDimaster = async () => {
-    await conectarAllDimaster(id);
-  };
 
   // Logic for displaying current items
   const indexOfLastItem = currentPage * itemsPerPage;

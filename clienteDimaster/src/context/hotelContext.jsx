@@ -6,13 +6,11 @@ import {informacionHabitacion,
      conectarDimaster, 
      desconectarDimaster,
      mensajeMQTT, 
-     agregarHuesped,
-     eliminarHuesped,
      actualizarHotel,
     hoteles,
     hotelID,
     elimiarHotel,
-   
+    crearHoteles,
     datosInformes
 } from "../api/request.js"
 
@@ -103,14 +101,14 @@ const eliminarHabitaciones = async (id)=>{
   
 
 
-const eliminarHuespedes = async (id)=>{
-    try {
-        await eliminarHuesped(id)
-   } catch (error) {
-       console.log(error)
-   }
+// const eliminarHuespedes = async (id)=>{
+//     try {
+//         await eliminarHuesped(id)
+//    } catch (error) {
+//        console.log(error)
+//    }
 
-}
+// }
   
 
 
@@ -166,6 +164,16 @@ const eliminarHoteles = async (id)=>{
 }
 
 
+const crearhotel = async (body)=>{
+    try {
+       console.log(body)
+       await crearHoteles(body)
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 
 const datosInformacion = async ()=>{
@@ -181,7 +189,7 @@ const datosInformacion = async ()=>{
     
 
     return (
-        <HotelContext.Provider value={{datoshoteles,datosInformacion, eliminarHoteles, actualizarHoteles,hotelid, hotelIDs,hotel,getHoteles, eliminarHuespedes, crearHuesped, mensajeError , desconectarMqtt,mensajes,conectarMqtt,crearHabitaciones,eliminarHabitaciones,getHabitaciones, habitaciones, actualizarHabitaciones}}>
+        <HotelContext.Provider value={{crearhotel,datoshoteles,datosInformacion, eliminarHoteles, actualizarHoteles,hotelid, hotelIDs,hotel,getHoteles, crearHuesped, mensajeError , desconectarMqtt,mensajes,conectarMqtt,crearHabitaciones,eliminarHabitaciones,getHabitaciones, habitaciones, actualizarHabitaciones}}>
             {children}
         </HotelContext.Provider>
     )

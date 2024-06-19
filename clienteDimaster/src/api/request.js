@@ -31,13 +31,6 @@ export const conectarDimaster= async (id)=> axios.post(`/conectarMqtt/${id}`)
 //ruta para desconectarse del dimaster
 export const desconectarDimaster= async (id)=> axios.post(`/desconectarMqtt/${id}`)
 
-
-//Ruta para agregar un huesped
-export const agregarHuesped = async (id, body) =>  axios.post(`/crearHuespedes/${id}`, body)
-
-//Ruta para eliminar un huesped
-export const eliminarHuesped = async (id) =>  axios.delete(`/deleteHuesped/${id}`)
-
 //Ruta para traer los hoteles
 export const hoteles = async () =>  axios.get(`/getHotel`)
 
@@ -46,7 +39,12 @@ export const hotelID = async (id) =>  axios.get(`/hotel/${id}`)
 //Ruta para actualizar el hotel
 export const actualizarHotel = async (id, body) =>  axios.put(`/updateHotel/${id}`, body)
 
+//ruta para crear hoteles
+export const crearHoteles = async (body)=> axios.post(`/crearHotel`, body)
+
+//ruta para actualizar usuarios
 export const actualizarUsuario = async (id, body) =>  axios.put(`/actualizarUser/${id}`, body)
+
 //Ruta para eliminar el hotel
 export const elimiarHotel = async (id) =>  axios.delete(`/deleteHotel/${id}`)
 

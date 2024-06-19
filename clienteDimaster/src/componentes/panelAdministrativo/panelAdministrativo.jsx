@@ -8,8 +8,8 @@ import { useHotel } from '../../context/hotelContext';
 import NavBarLateral from '../navBarLateral/navBarLateral.jsx';
 import io from 'socket.io-client';
 
+//const socket = io('http://localhost:3000');
 const socket = io('https://api-servidor-d8f1.onrender.com');
-
 const PanelAdministrativo = () => {
   const { getProfile, isAuthenticated, profile, logout } = useAuth();
   const { conectarMqtt, mensajeMQTT, desconectarMqtt } = useHotel();
