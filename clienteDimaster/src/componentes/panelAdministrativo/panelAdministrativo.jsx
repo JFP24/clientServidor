@@ -22,7 +22,7 @@ const PanelAdministrativo = () => {
   const itemsPerPage = 28;
 
   const idHotel = profile?.userProfile?.hotel.map((e) => e.id);
-console.log(user)
+console.log(user.user)
   useEffect(() => {
     getProfile();
   }, [isAuthenticated]);
