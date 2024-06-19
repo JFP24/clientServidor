@@ -6,8 +6,7 @@ import logo from '../../assets/LogoDiseven en blanco-02.png';
 import io from 'socket.io-client';
 
 //const socket = io('http://localhost:3000');
-const socket = io('https://api-servidor-d8f1.onrender.com');// Asegúrate de que la URL coincida con tu servidor
-
+const socket = io('https://clientservidor.onrender.com');
 const NavBarLateral = ({ idHotel, logout, profile, handleFilterChange }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [isAdminSubMenuOpen, setIsAdminSubMenuOpen] = useState(false); // Estado para controlar el submenú de Admin

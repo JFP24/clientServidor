@@ -16,7 +16,7 @@ export const AuthProvider = ({children})=> {
 const [user, setUser]=useState(null)
 const [isAuthenticated, setIAuthenticated] = useState(false)
 const [error , setErrors] = useState([])
-console.log(error)
+//console.log(error)
 const [loading, setLoading]= useState(true)
 
 
@@ -102,8 +102,9 @@ checkLogin()
 
 const [profile , setProfile]=useState([])
 
-    const getProfile = async ()=> {
-        const res = await informacionPerfil()
+    const getProfile = async (id)=> {
+      console.log(id)
+        const res = await informacionPerfil(id)
         setProfile(res.data)
       // console.log(res.data)
     }
@@ -131,7 +132,6 @@ const usuarioTodos = async (id , body)=>{
 }
 
 
-console.log(users)
 
     return (
         <AuthContext.Provider value={{users , usuarioTodos,signup ,signin, user, isAuthenticated, error, loading , logout, getProfile, profile,actualizarUser}}>

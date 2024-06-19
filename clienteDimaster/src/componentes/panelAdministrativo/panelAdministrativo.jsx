@@ -9,19 +9,22 @@ import NavBarLateral from '../navBarLateral/navBarLateral.jsx';
 import io from 'socket.io-client';
 
 //const socket = io('http://localhost:3000');
-const socket = io('https://api-servidor-d8f1.onrender.com');
+const socket = io('https://clientservidor.onrender.com');
+
 const PanelAdministrativo = () => {
-  const { getProfile, isAuthenticated, profile, logout } = useAuth();
+  const { getProfile, isAuthenticated, profile, logout, user } = useAuth();
   const { conectarMqtt, mensajeMQTT, desconectarMqtt } = useHotel();
   const [habitacionesFiltradas, setHabitacionesFiltradas] = useState([]);
   const [filtro, setFiltro] = useState('todos');
   const [busquedaNumeroHabitacion, setBusquedaNumeroHabitacion] = useState('');
   const [currentFilter, setCurrentFilter] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 28;
 
   const idHotel = profile?.userProfile?.hotel.map((e) => e.id);
-
+console.log(user)
   useEffect(() => {
-    getProfile();
+    getProfile(user?.id);
   }, [isAuthenticated]);
 
   useEffect(() => {
@@ -58,19 +61,19 @@ const PanelAdministrativo = () => {
 
   useEffect(() => {
     const handleUpdateLavanderia = (data) => {
-      console.log(data)
+      console.log(data);
       setHabitacionesFiltradas((prevState) =>
         prevState.map(habitacion =>
-          habitacion.habitacionID === data.id ? { ...habitacion, lavanderia: data.valor } : habitacion
+          habitacion.habitacionID === data.habitacionID ? { ...habitacion, lavanderia: data.valor } : habitacion
         )
       );
     };
 
     const handleUpdateNoMolestar = (data) => {
-      console.log(data)
+      console.log(data);
       setHabitacionesFiltradas((prevState) =>
         prevState.map(habitacion =>
-          habitacion.habitacionID === data.id ? { ...habitacion, noMolestar: data.valor } : habitacion
+          habitacion.habitacionID === data.habitacionID ? { ...habitacion, noMolestar: data.valor } : habitacion
         )
       );
     };
@@ -97,9 +100,6 @@ const PanelAdministrativo = () => {
     setFiltro(filterType);
     setCurrentFilter(filterType.charAt(0).toUpperCase() + filterType.slice(1));
   };
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 28;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
