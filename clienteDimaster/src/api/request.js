@@ -8,8 +8,8 @@ export const registerRequest = async (user) => axios.post("/registroUser", user)
 export const loginRequest = async (user) =>  axios.post(`/loginUser`, user )
 
 //obtenemos la infomracion de cada perfil que este online
-export const informacionPerfil = async (id) =>  axios.get(`/profile/${id}`)
-
+//export const informacionPerfil = async (id) =>  axios.get(`/profile/${id}`)
+export const informacionPerfil = async (id) =>  axios.get(`/profile`)
 //obtenemos la informacion de la habitacion por medio del id
 export const informacionHabitacion = async (id) =>  axios.get(`/habitacion/${id}`)
 

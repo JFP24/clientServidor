@@ -9,7 +9,7 @@ import NavBarLateral from '../navBarLateral/navBarLateral.jsx';
 import io from 'socket.io-client';
 
 //const socket = io('http://localhost:3000');
-const socket = io('https://api-servidor-d8f1.onrender.com');
+const socket = io('http://api-servidor-d8f1.onrender.com');
 
 const PanelAdministrativo = () => {
   const { getProfile, isAuthenticated, profile, logout, user } = useAuth();
@@ -22,9 +22,9 @@ const PanelAdministrativo = () => {
   const itemsPerPage = 28;
 
   const idHotel = profile?.userProfile?.hotel.map((e) => e.id);
-console.log(user.user)
+
   useEffect(() => {
-    getProfile(user.user.id);
+    getProfile();
   }, [isAuthenticated]);
 
   useEffect(() => {
