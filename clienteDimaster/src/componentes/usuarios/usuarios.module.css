@@ -1,0 +1,138 @@
+.mainContainer {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .container {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100vh; /* Hace que el contenedor principal ocupe toda la altura de la ventana */
+  }
+  
+  .lists {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-y: auto;
+  }
+  
+  .list {
+    flex: 1;
+    margin: 0 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+    height: 70vh; /* Ajusta la altura de las listas para permitir el desplazamiento */
+  }
+  
+  .list h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .list ul li {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .list ul li:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+  }
+  
+  .userItem {
+    padding: 10px;
+    background-color: #e9f7ef;
+    border: 1px solid #b2dfdb;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .hotelItem {
+    padding: 10px;
+    background-color: #fff3e0;
+    border: 1px solid #ffcc80;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .selected {
+    background-color: #d1c4e9 !important;
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .actions h2 {
+    margin-bottom: 20px;
+  }
+  
+  .assign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .assign h3 {
+    margin-bottom: 10px;
+  }
+  
+  .assign select {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 50%;
+    max-width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  .assign button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .assign button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .lists {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .list {
+      width: 80%;
+      margin-bottom: 20px;
+    }
+  
+    .assign select {
+      width: 80%;
+    }
+  }
+  

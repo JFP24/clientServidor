@@ -1,5 +1,5 @@
 import { createContext , useState, useContext, useEffect} from "react";
-import { registerRequest, loginRequest, verifyTokenRequet, informacionPerfil} from "../api/request.js"
+import { usuarios,registerRequest, loginRequest, verifyTokenRequet, informacionPerfil,actualizarUsuario } from "../api/request.js"
 import Cookies from "js-cookie"
 
 export const AuthContext = createContext();
@@ -108,8 +108,33 @@ const [profile , setProfile]=useState([])
       // console.log(res.data)
     }
 
+
+const actualizarUser = async (id , body)=>{
+  try {
+    actualizarUsuario(id, body)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
+const [users , setUsers]=useState()
+
+const usuarioTodos = async (id , body)=>{
+  try {
+    const re = await usuarios()
+    setUsers(re.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+console.log(users)
+
     return (
-        <AuthContext.Provider value={{signup ,signin, user, isAuthenticated, error, loading , logout, getProfile, profile}}>
+        <AuthContext.Provider value={{users , usuarioTodos,signup ,signin, user, isAuthenticated, error, loading , logout, getProfile, profile,actualizarUser}}>
             {children}
         </AuthContext.Provider>
     )

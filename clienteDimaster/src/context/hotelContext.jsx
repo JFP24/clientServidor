@@ -12,7 +12,7 @@ import {informacionHabitacion,
     hoteles,
     hotelID,
     elimiarHotel,
-    conectarTodosDimaster,
+   
     datosInformes
 } from "../api/request.js"
 
@@ -166,13 +166,7 @@ const eliminarHoteles = async (id)=>{
 }
 
 
-const conectarAllDimaster = async (id)=>{
-    try {
-        await conectarTodosDimaster(id)
-    } catch (error) {
-        console.log(error)
-    }
-}
+
 
 const datosInformacion = async ()=>{
     try {
@@ -187,7 +181,7 @@ const datosInformacion = async ()=>{
     
 
     return (
-        <HotelContext.Provider value={{datoshoteles,datosInformacion, conectarAllDimaster, eliminarHoteles, actualizarHoteles,hotelid, hotelIDs,hotel,getHoteles, eliminarHuespedes, crearHuesped, mensajeError , desconectarMqtt,mensajes,conectarMqtt,crearHabitaciones,eliminarHabitaciones,getHabitaciones, habitaciones, actualizarHabitaciones}}>
+        <HotelContext.Provider value={{datoshoteles,datosInformacion, eliminarHoteles, actualizarHoteles,hotelid, hotelIDs,hotel,getHoteles, eliminarHuespedes, crearHuesped, mensajeError , desconectarMqtt,mensajes,conectarMqtt,crearHabitaciones,eliminarHabitaciones,getHabitaciones, habitaciones, actualizarHabitaciones}}>
             {children}
         </HotelContext.Provider>
     )

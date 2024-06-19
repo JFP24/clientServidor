@@ -15,7 +15,7 @@ const Register = () => {
   console.log(error);
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/home");
+    if (isAuthenticated) navigate("/panelAdministrativo");
   }, [isAuthenticated]);
 
   const onSubmit = handleSubmit(async (values) => {

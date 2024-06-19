@@ -84,8 +84,6 @@ const PanelAdministrativo = () => {
     };
   }, []);
 
-
-
   const handleFiltroChange = (event) => {
     setFiltro(event.target.value);
     setCurrentFilter(event.target.options[event.target.selectedIndex].text);
@@ -199,11 +197,20 @@ const PanelAdministrativo = () => {
                     </span>
                   </div>
                   <div className={styles.iconsContainer}>
-                    <TbHotelService className={`${styles.icon} ${habitacion.noMolestar === 1 ? styles.noMolestar : ''}`} title="No molestar" />
-                    <MdLocalLaundryService className={`${styles.icon} ${habitacion.lavanderia === 1 ? styles.lavanderia : ''}`} title="Lavandería" />
-                    <MdOutlineCleaningServices className={`${styles.icon} ${habitacion.houseKeeping === 1 ? styles.houseKeeping : ''}`} title="Housekeeping" />
-                    <MdMeetingRoom className={`${styles.icon} ${habitacion.puerta === 1 ? styles.puerta : ''}`} title="Puerta" />
-                    <MdCheckCircle className={`${styles.icon} ${habitacion.checkin === 1 ? styles.checkin : ''}`} title="Check-in" />
+                    {profile?.userProfile?.rol === 'servicio' ? (
+                      <>
+                        <MdLocalLaundryService className={`${styles.icon} ${habitacion.lavanderia === 1 ? styles.lavanderia : ''}`} title="Lavandería" />
+                        <MdOutlineCleaningServices className={`${styles.icon} ${habitacion.houseKeeping === 1 ? styles.houseKeeping : ''}`} title="Housekeeping" />
+                      </>
+                    ) : (
+                      <>
+                        <TbHotelService className={`${styles.icon} ${habitacion.noMolestar === 1 ? styles.noMolestar : ''}`} title="No molestar" />
+                        <MdLocalLaundryService className={`${styles.icon} ${habitacion.lavanderia === 1 ? styles.lavanderia : ''}`} title="Lavandería" />
+                        <MdOutlineCleaningServices className={`${styles.icon} ${habitacion.houseKeeping === 1 ? styles.houseKeeping : ''}`} title="Housekeeping" />
+                        <MdMeetingRoom className={`${styles.icon} ${habitacion.puerta === 1 ? styles.puerta : ''}`} title="Puerta" />
+                        <MdCheckCircle className={`${styles.icon} ${habitacion.checkin === 1 ? styles.checkin : ''}`} title="Check-in" />
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

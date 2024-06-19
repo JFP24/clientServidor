@@ -46,13 +46,14 @@ export const hotelID = async (id) =>  axios.get(`/hotel/${id}`)
 //Ruta para actualizar el hotel
 export const actualizarHotel = async (id, body) =>  axios.put(`/updateHotel/${id}`, body)
 
-
+export const actualizarUsuario = async (id, body) =>  axios.put(`/actualizarUser/${id}`, body)
 //Ruta para eliminar el hotel
 export const elimiarHotel = async (id) =>  axios.delete(`/deleteHotel/${id}`)
 
-
+//traer todo los usuarios
+export const usuarios = async ()=> axios.get("/usuarios")
 //Ruta para conectar todos los dimaster
-export const conectarTodosDimaster = async (id)=>axios.post(`/conectar-dimasters/${id}`)
+//export const conectarTodosDimaster = async (id)=>axios.post(`/conectar-dimasters/${id}`)
 
 //ruta para obtener los datos de la ocupacion
 export const datosInformes = async ()=>axios.get(`/datos`)
