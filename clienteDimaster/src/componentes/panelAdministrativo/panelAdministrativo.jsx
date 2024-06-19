@@ -9,7 +9,7 @@ import NavBarLateral from '../navBarLateral/navBarLateral.jsx';
 import io from 'socket.io-client';
 
 //const socket = io('http://localhost:3000');
-const socket = io('https://clientservidor.onrender.com');
+const socket = io('https://api-servidor-d8f1.onrender.com');
 
 const PanelAdministrativo = () => {
   const { getProfile, isAuthenticated, profile, logout, user } = useAuth();
