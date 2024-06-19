@@ -12,7 +12,7 @@ import io from 'socket.io-client';
 const socket = io('https://api-servidor-d8f1.onrender.com');
 
 const PanelAdministrativo = () => {
-  const { getProfile, isAuthenticated, profile, logout, user } = useAuth();
+  const { getProfile, isAuthenticated, profile, logout } = useAuth();
   const { conectarMqtt, mensajeMQTT, desconectarMqtt } = useHotel();
   const [habitacionesFiltradas, setHabitacionesFiltradas] = useState([]);
   const [filtro, setFiltro] = useState('todos');
@@ -24,7 +24,7 @@ const PanelAdministrativo = () => {
   const idHotel = profile?.userProfile?.hotel.map((e) => e.id);
 console.log(user)
   useEffect(() => {
-    getProfile(user?.id);
+    getProfile();
   }, [isAuthenticated]);
 
   useEffect(() => {
