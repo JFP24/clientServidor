@@ -102,10 +102,10 @@ checkLogin()
 
 const [profile , setProfile]=useState([])
 
-    const getProfile = async ()=> {
+    const getProfile = async (id)=> {
       try {
        
-        const res = await informacionPerfil()
+        const res = await informacionPerfil(id)
         setProfile(res.data)
       } catch (error) {
         console.log(error)

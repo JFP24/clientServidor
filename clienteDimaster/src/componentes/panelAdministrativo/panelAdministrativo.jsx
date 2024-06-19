@@ -24,7 +24,7 @@ const PanelAdministrativo = () => {
   const idHotel = profile?.userProfile?.hotel.map((e) => e.id);
 console.log(user.user)
   useEffect(() => {
-    getProfile();
+    getProfile(user.user.id);
   }, [isAuthenticated]);
 
   useEffect(() => {
