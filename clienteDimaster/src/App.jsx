@@ -18,13 +18,7 @@ import Informes from "./componentes/informes/informes.jsx";
  import { useNavigate } from "react-router-dom";
 
 function App() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Redirigir a una ruta específica al recargar la página
-    navigate("/login");
-  }, [navigate]);
-
+  
   return (
     <AuthProvider>
       <HotelProvider>
