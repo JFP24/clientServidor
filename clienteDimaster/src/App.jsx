@@ -16,16 +16,15 @@ import DashboardHabitaciones from "./componentes/DashboarHabitaciones/dashbardHa
 import Informes from "./componentes/informes/informes.jsx";
 
  import { useNavigate } from "react-router-dom";
+
 function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
     // Redirigir a una ruta específica al recargar la página
-    navigate("/");
+    navigate("/login");
   }, [navigate]);
-}
 
-function App() {
   return (
     <AuthProvider>
       <HotelProvider>
