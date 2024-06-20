@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import io from 'socket.io-client';
 const instance = axios.create({
     baseURL:"https://api-servidor-d8f1.onrender.com/api/v1",
     withCredentials:true
