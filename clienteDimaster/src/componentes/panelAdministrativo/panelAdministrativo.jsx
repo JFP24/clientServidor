@@ -146,8 +146,13 @@ const PanelAdministrativo = () => {
   };
 
   const handleFilterChange = (filterType) => {
-    setFiltro(filterType);
-    setCurrentFilter(filterType.charAt(0).toUpperCase() + filterType.slice(1));
+    if (filterType) {
+      setFiltro(filterType);
+      setCurrentFilter(filterType.charAt(0).toUpperCase() + filterType.slice(1));
+    } else {
+      setFiltro('todos'); // Valor predeterminado si filterType es undefined
+      setCurrentFilter('Todos'); // Valor predeterminado si filterType es undefined
+    }
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;

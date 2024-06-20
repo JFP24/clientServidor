@@ -1,12 +1,15 @@
 .containerPrincipal {
   display: flex;
   font-family: 'Roboto', sans-serif;
+  height: 100vh; /* Asegúrate de que ocupa toda la altura de la ventana */
+  overflow: hidden; /* Evita el desplazamiento en el contenedor principal */
 }
 
 .mainContent {
   flex-grow: 1;
   padding: 20px;
   background-color: #f4f6f8;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
 }
 
 .header {
@@ -147,6 +150,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 15px;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
 }
 
 .roomCardLink {
@@ -365,6 +369,11 @@
 }
 
 @media (max-width: 480px) {
+  .mainContent {
+    overflow-y: auto; /* Permite el desplazamiento vertical */
+    height: 100vh; /* Asegúrate de que ocupa toda la altura de la ventana */
+  }
+
   .filter label,
   .filter input,
   .filter select {
@@ -393,5 +402,7 @@
 
   .gridContainer {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    overflow-y: auto; /* Permite el desplazamiento vertical */
+    max-height: calc(100vh - 200px); /* Ajusta el espacio para el header y otros contenidos */
   }
 }
