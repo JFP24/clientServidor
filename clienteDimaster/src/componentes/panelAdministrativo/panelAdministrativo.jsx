@@ -26,7 +26,7 @@ const PanelAdministrativo = () => {
     const isPageReloaded = sessionStorage.getItem('isPageReloaded');
     if (!isPageReloaded) {
       sessionStorage.setItem('isPageReloaded', 'true');
-      navigate('/login');
+      navigate('/');
     }
   }, [navigate]);
 
