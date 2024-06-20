@@ -22,10 +22,10 @@ const PanelAdministrativo = () => {
   const itemsPerPage = 28;
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Redirigir a una ruta específica al recargar la página
-    navigate("/");
-  }, [navigate]);
+  // useEffect(() => {
+  //   // Redirigir a una ruta específica al recargar la página
+  //   navigate("/");
+  // }, [navigate]);
 
   useEffect(() => {
     getProfile();
