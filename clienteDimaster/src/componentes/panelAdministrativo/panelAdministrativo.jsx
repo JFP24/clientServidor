@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './panelAdministrativo.module.css';
 import { useAuth } from '../../context/authContext';
 import { MdLocalLaundryService, MdOutlineCleaningServices, MdMeetingRoom, MdCheckCircle } from 'react-icons/md';
@@ -8,7 +9,6 @@ import { useHotel } from '../../context/hotelContext';
 import NavBarLateral from '../navBarLateral/navBarLateral.jsx';
 import io from 'socket.io-client';
 
-//const socket = io('http://localhost:3000');
 const socket = io('https://api-servidor-d8f1.onrender.com');
 
 const PanelAdministrativo = () => {
@@ -20,8 +20,12 @@ const PanelAdministrativo = () => {
   const [currentFilter, setCurrentFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 28;
+  const navigate = useNavigate();
 
-  const idHotel = profile?.userProfile?.hotel.map((e) => e.id);
+  useEffect(() => {
+    // Redirigir a una ruta específica al recargar la página
+    navigate("/login");
+  }, [navigate]);
 
   useEffect(() => {
     getProfile();
@@ -78,14 +82,56 @@ const PanelAdministrativo = () => {
       );
     };
 
+    const handleUpdatePuerta = (data) => {
+      console.log(data);
+      setHabitacionesFiltradas((prevState) =>
+        prevState.map(habitacion =>
+          habitacion.habitacionID === data.habitacionID ? { ...habitacion, puerta: data.valor } : habitacion
+        )
+      );
+    };
+
+    const handleUpdateHouseKeeping = (data) => {
+      console.log(data);
+      setHabitacionesFiltradas((prevState) =>
+        prevState.map(habitacion =>
+          habitacion.habitacionID === data.habitacionID ? { ...habitacion, houseKeeping: data.valor } : habitacion
+        )
+      );
+    };
+
+    const handleUpdateCheckin = (data) => {
+      console.log(data);
+      setHabitacionesFiltradas((prevState) =>
+        prevState.map(habitacion =>
+          habitacion.habitacionID === data.habitacionID ? { ...habitacion, checkin: data.valor } : habitacion
+        )
+      );
+    };
+
     socket.on('updateLavanderia', handleUpdateLavanderia);
     socket.on('updateNoMolestar', handleUpdateNoMolestar);
+    socket.on('updatePuerta', handleUpdatePuerta);
+    socket.on('updateHouseKeeping', handleUpdateHouseKeeping);
+    socket.on('updateCheckin', handleUpdateCheckin);
+
+    // Emitir eventos de WebSocket para actualizaciones
+    habitacionesFiltradas.forEach((habitacion) => {
+      socket.emit('updateLavanderia', { habitacionID: habitacion.habitacionID, valor: habitacion.lavanderia });
+      socket.emit('updateNoMolestar', { habitacionID: habitacion.habitacionID, valor: habitacion.noMolestar });
+      socket.emit('puerta', { habitacionID: habitacion.habitacionID, valor: habitacion.puerta });
+      socket.emit('housekepping', { habitacionID: habitacion.habitacionID, valor: habitacion.houseKeeping });
+      socket.emit('checkin', { habitacionID: habitacion.habitacionID, valor: habitacion.checkin });
+    });
 
     return () => {
       socket.off('updateLavanderia', handleUpdateLavanderia);
       socket.off('updateNoMolestar', handleUpdateNoMolestar);
+      socket.off('updatePuerta', handleUpdatePuerta);
+      socket.off('updateHouseKeeping', handleUpdateHouseKeeping);
+      socket.off('updateCheckin', handleUpdateCheckin);
     };
-  }, []);
+  }, [habitacionesFiltradas]);
 
   const handleFiltroChange = (event) => {
     setFiltro(event.target.value);
@@ -121,6 +167,8 @@ const PanelAdministrativo = () => {
   const prevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
+
+  const idHotel = profile?.userProfile?.hotel.map((e) => e.id);
 
   return (
     <div className={styles.containerPrincipal}>

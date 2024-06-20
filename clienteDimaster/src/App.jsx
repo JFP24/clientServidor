@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/authContext.jsx";
 import { HotelProvider } from "./context/hotelContext.jsx";
@@ -16,6 +18,13 @@ import DashboardHabitaciones from "./componentes/DashboarHabitaciones/dashbardHa
 import Informes from "./componentes/informes/informes.jsx";
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirigir a una ruta específica al recargar la página
+    navigate("/");
+  }, [navigate]);
+
   return (
     <AuthProvider>
       <HotelProvider>
@@ -27,7 +36,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             
             {/* Rutas protegidas por autenticación */}
-           {/* // <Route element={<ProtectedRoute />}> */}
+            <Route element={<ProtectedRoute />}>
               <Route path="/panelAdministrativo" element={<PanelAdministrativo />} />
               <Route path="/perfil" element={<PerfilAdministrador />} />
               
@@ -40,7 +49,7 @@ function App() {
                 <Route path="/informes" element={<Informes />} />
                 <Route path="/dashboard/usuarios" element={<Usuarios />} />
               </Route>
-            {/* </Route> */}
+            </Route>
           </Routes>
         </BrowserRouter>
       </HotelProvider>
