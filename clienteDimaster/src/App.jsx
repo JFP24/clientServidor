@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/authContext.jsx";
 import { HotelProvider } from "./context/hotelContext.jsx";
@@ -17,6 +15,7 @@ import DashboardHoteles from "./componentes/DashBoardHoteles/dashboardHoteles.js
 import DashboardHabitaciones from "./componentes/DashboarHabitaciones/dashbardHabitaciones.jsx";
 import Informes from "./componentes/informes/informes.jsx";
 
+ import { useNavigate } from "react-router-dom";
 function App() {
   const navigate = useNavigate();
 
@@ -24,7 +23,9 @@ function App() {
     // Redirigir a una ruta específica al recargar la página
     navigate("/");
   }, [navigate]);
+}
 
+function App() {
   return (
     <AuthProvider>
       <HotelProvider>

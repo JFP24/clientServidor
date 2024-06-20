@@ -24,7 +24,7 @@ const PanelAdministrativo = () => {
 
   useEffect(() => {
     // Redirigir a una ruta específica al recargar la página
-    navigate("/login");
+    navigate("/");
   }, [navigate]);
 
   useEffect(() => {
@@ -111,9 +111,9 @@ const PanelAdministrativo = () => {
 
     socket.on('updateLavanderia', handleUpdateLavanderia);
     socket.on('updateNoMolestar', handleUpdateNoMolestar);
-    socket.on('updatePuerta', handleUpdatePuerta);
-    socket.on('updateHouseKeeping', handleUpdateHouseKeeping);
-    socket.on('updateCheckin', handleUpdateCheckin);
+    socket.on('puerta', handleUpdatePuerta);
+    socket.on('housekepping', handleUpdateHouseKeeping);
+    socket.on('checkin', handleUpdateCheckin);
 
     // Emitir eventos de WebSocket para actualizaciones
     habitacionesFiltradas.forEach((habitacion) => {
