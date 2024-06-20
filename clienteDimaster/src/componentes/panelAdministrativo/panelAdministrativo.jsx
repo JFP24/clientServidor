@@ -121,7 +121,7 @@ const PanelAdministrativo = () => {
       socket.emit('updateLavanderia', { habitacionID: habitacion.habitacionID, valor: habitacion.lavanderia });
       socket.emit('updateNoMolestar', { habitacionID: habitacion.habitacionID, valor: habitacion.noMolestar });
       socket.emit('puerta', { habitacionID: habitacion.habitacionID, valor: habitacion.puerta });
-      socket.emit('housekeeping', { habitacionID: habitacion.habitacionID, valor: habitacion.houseKeeping });
+      socket.emit('houseKeeping', { habitacionID: habitacion.habitacionID, valor: habitacion.houseKeeping });
       socket.emit('checkin', { habitacionID: habitacion.habitacionID, valor: habitacion.checkin });
       socket.emit('estado', { habitacionID: habitacion.habitacionID, valor: habitacion.estado });
     });
