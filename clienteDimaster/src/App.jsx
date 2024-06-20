@@ -27,7 +27,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             
             {/* Rutas protegidas por autenticación */}
-            <Route element={<ProtectedRoute />}>
+           {/* // <Route element={<ProtectedRoute />}> */}
               <Route path="/panelAdministrativo" element={<PanelAdministrativo />} />
               <Route path="/perfil" element={<PerfilAdministrador />} />
               
@@ -40,7 +40,7 @@ function App() {
                 <Route path="/informes" element={<Informes />} />
                 <Route path="/dashboard/usuarios" element={<Usuarios />} />
               </Route>
-            </Route>
+            {/* </Route> */}
           </Routes>
         </BrowserRouter>
       </HotelProvider>
