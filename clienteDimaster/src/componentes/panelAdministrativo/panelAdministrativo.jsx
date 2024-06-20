@@ -22,10 +22,13 @@ const PanelAdministrativo = () => {
   const itemsPerPage = 28;
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   // Redirigir a una ruta específica al recargar la página
-  //   navigate("/");
-  // }, [navigate]);
+  useEffect(() => {
+    const isPageReloaded = sessionStorage.getItem('isPageReloaded');
+    if (!isPageReloaded) {
+      sessionStorage.setItem('isPageReloaded', 'true');
+      navigate('/login');
+    }
+  }, [navigate]);
 
   useEffect(() => {
     getProfile();
