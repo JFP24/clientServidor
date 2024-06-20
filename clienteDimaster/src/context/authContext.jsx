@@ -23,12 +23,12 @@ export const AuthProvider = ({ children }) => {
     const signup = async (user) => {
         try {
             const res = await registerRequest(user);
-            console.log(res);
+            console.log(res.data.user.token);
             setUser(res.data);
             setIAuthenticated(true);
             // Guardar token en cookies y localStorage
-            Cookies.set("token", res.data.token, { expires: 1, secure: true, sameSite: 'none' });
-            localStorage.setItem("token", res.data.token);
+            Cookies.set("token", res?.data?.user?.token, { expires: 1, secure: true, sameSite: 'none' });
+            localStorage.setItem("token", res?.data?.user?.token);
         } catch (error) {
             console.log(error.response.data);
             setErrors(error.response.data);
@@ -42,8 +42,8 @@ export const AuthProvider = ({ children }) => {
             setUser(res.data);
             setIAuthenticated(true);
             // Guardar token en cookies y localStorage
-            Cookies.set("token", res.data.token, { expires: 1, secure: true, sameSite: 'none' });
-            localStorage.setItem("token", res.data.token);
+            Cookies.set("token", res?.data?.user?.token, { expires: 1, secure: true, sameSite: 'none' });
+            localStorage.setItem("token", res?.data?.user?.token);
         } catch (error) {
             console.log(error);
             if (Array.isArray(error.response.data)) {
