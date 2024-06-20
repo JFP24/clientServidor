@@ -6,13 +6,17 @@ import NavBarLateral from '../navBarLateral/navBarLateral';
 
 const DashboardHabitaciones = () => {
   const { id } = useParams();
-  const {  hotelid, eliminarHabitaciones, actualizarHabitaciones } = useHotel();
+  const {  hotelid, eliminarHabitaciones, actualizarHabitaciones,hotelIDs } = useHotel();
   const [showForm, setShowForm] = useState(false);
   const [selectedHabitacion, setSelectedHabitacion] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
- 
+ console.log(hotelid)
+
+useEffect(()=>{
+hotelIDs(id)
+},[])
 
   const handleEliminarHabitacion = async (id) => {
     const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar esta habitacion?");

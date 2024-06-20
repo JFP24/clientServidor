@@ -7,11 +7,11 @@ import io from 'socket.io-client';
 
 //const socket = io('http://localhost:3000');
 const socket = io('https://api-servidor-d8f1.onrender.com');
-//
+
 const NavBarLateral = ({ idHotel, logout, profile, handleFilterChange }) => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [isAdminSubMenuOpen, setIsAdminSubMenuOpen] = useState(false); // Estado para controlar el submenú de Admin
-  const [isServiceSubMenuOpen, setIsServiceSubMenuOpen] = useState(false); // Estado para controlar el submenú de Servicio
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAdminSubMenuOpen, setIsAdminSubMenuOpen] = useState(false);
+  const [isServiceSubMenuOpen, setIsServiceSubMenuOpen] = useState(false);
 
   const [lavanderiaCount, setLavanderiaCount] = useState(0);
   const [noMolestarCount, setNoMolestarCount] = useState(0);
@@ -41,14 +41,14 @@ const NavBarLateral = ({ idHotel, logout, profile, handleFilterChange }) => {
       setLavanderiaCount(data.valor);
     });
 
-    socket.on('updateNoAseo', (data) => {
+    socket.on('housekeeping', (data) => {
       setHouseKeepingCount(data.valor);
     });
 
     return () => {
       socket.off('updateNoMolestar');
       socket.off('updateLavanderia');
-      socket.off('updateNoAseo');
+      socket.off('housekeeping');
     };
   }, []);
 
@@ -110,22 +110,20 @@ const NavBarLateral = ({ idHotel, logout, profile, handleFilterChange }) => {
               </>
             )}
             <li className={styles.li}><Link className={styles.a} to="/perfil"><FaUserTie className={styles.icon}/> Perfil</Link></li>
-            <li className={styles.li}><Link className={styles.a} to="#"><FaQuestionCircle className={styles.icon}/> Ayuda</Link></li>
             {profile?.userProfile?.rol === 'Admin' && (
               <li className={styles.li} onClick={toggleAdminSubMenu}>
-                <Link className={styles.a} to="#"><FaTools className={styles.icon}/> Administrar <FaChevronDown className={styles.chevron} /></Link>
+                <Link className={styles.a} to="#"><FaTools className={styles.icon}/> Administrar <FaChevronDown className={`${styles.chevron} ${isAdminSubMenuOpen ? styles.open : ''}`} /></Link>
                 {isAdminSubMenuOpen && (
                   <ul className={styles.subMenu}>
                     <li className={styles.subLi}><Link className={styles.a} to="/dashboard/hoteles">Hoteles</Link></li>
                     <li className={styles.subLi}><Link className={styles.a} to="/dashboard/usuarios">Usuarios</Link></li>
-                    {/* <li className={styles.subLi}><Link className={styles.a} to="/dashboard/estadisticas">Estadísticas</Link></li> */}
                   </ul>
                 )}
               </li>
             )}
             {profile?.userProfile?.rol === 'servicio' && (
               <li className={styles.li} onClick={toggleServiceSubMenu}>
-                <Link className={styles.a} to="#"><FaBroom className={styles.icon}/> Servicio <FaChevronDown className={styles.chevron} /></Link>
+                <Link className={styles.a} to="#"><FaBroom className={styles.icon}/> Servicio <FaChevronDown className={`${styles.chevron} ${isServiceSubMenuOpen ? styles.open : ''}`} /></Link>
                 {isServiceSubMenuOpen && (
                   <ul className={styles.subMenu}>
                     {noMolestarCount > 0 && (

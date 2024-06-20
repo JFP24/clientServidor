@@ -43,7 +43,8 @@
   color: #0077B6;
 }
 
-.filter select, .filter input {
+.filter select,
+.filter input {
   padding: 8px;
   border: 1px solid #0077B6;
   border-radius: 5px;
@@ -51,7 +52,8 @@
   transition: all 0.3s ease;
 }
 
-.filter select:focus, .filter input:focus {
+.filter select:focus,
+.filter input:focus {
   outline: none;
   border-color: #023E8A;
 }
@@ -74,7 +76,6 @@
   color: #333;
 }
 
-
 .statsAndLegend {
   display: flex;
   flex-wrap: wrap;
@@ -88,7 +89,8 @@
   gap: 10px;
 }
 
-.habOcupadas, .habDesocupadas {
+.habOcupadas,
+.habDesocupadas {
   padding: 10px;
   border-radius: 5px;
   font-weight: 700;
@@ -185,10 +187,9 @@
 
 .roomStatus {
   font-size: 24px;
-  color: #555;
 }
 
-.roomCard.ocupada .roomStatus {
+.roomCard.ocupadaIcon .roomStatus {
   color: #ff6b6b;
 }
 
@@ -196,13 +197,16 @@
   color: #b4b4b4;
 }
 
-.ocupadaIcon{
+.ocupadaIcon {
+  color: #ff6b6b;
   font-size: 35px;
 }
-.desocupadaIcon{
-  font-size: 35px;
 
+.desocupadaIcon {
+  font-size: 35px;
+  color: #b4b4b4;
 }
+
 .iconsContainer {
   display: flex;
   justify-content: space-around;
@@ -341,7 +345,8 @@
     margin-left: 0;
   }
 
-  .headerContent, .statsAndLegend {
+  .headerContent,
+  .statsAndLegend {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -360,7 +365,9 @@
 }
 
 @media (max-width: 480px) {
-  .filter label, .filter input, .filter select {
+  .filter label,
+  .filter input,
+  .filter select {
     width: 100%;
   }
 
@@ -380,7 +387,7 @@
   }
 
   .icon {
-    font-size: 18px; /* Tamaño de los íconos reducido para pantallas pequeñas */
+    font-size: 22px; /* Tamaño de los íconos reducido para pantallas pequeñas */
     margin: 5px;
   }
 

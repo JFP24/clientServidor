@@ -18,7 +18,6 @@
   transition: transform 0.3s ease;
   position: relative;
   z-index: 1000;
-  border-radius: 10px;
 }
 
 .sidebar.open {
@@ -29,7 +28,7 @@
   display: none;
   position: fixed;
   top: 20px;
-  left: 20px;
+  right: 20px;
   font-size: 24px;
   cursor: pointer;
   z-index: 1001;
@@ -37,7 +36,6 @@
 
 .logo {
   width: 100%;
-
 }
 
 .nav {
@@ -61,7 +59,6 @@
   transition: background 0.3s, color 0.3s;
   position: relative;
   width: 100%;
-  border-radius: 10px;
 }
 
 .a:hover, .a.active {
@@ -92,7 +89,6 @@
 
 .logout .a {
   color: white;
-  border-radius: 10px;
 }
 
 .logout .a:hover {
@@ -133,10 +129,14 @@
   }
 
   .sidebar.open {
-    transform: translateX(0);
+    left: 0;
   }
 
   .burgerMenu {
     display: block;
+  }
+
+  .mainContent {
+    margin-left: 0;
   }
 }

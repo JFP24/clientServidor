@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './panelAdministrativo.module.css';
@@ -9,6 +10,7 @@ import { useHotel } from '../../context/hotelContext';
 import NavBarLateral from '../navBarLateral/navBarLateral.jsx';
 import io from 'socket.io-client';
 
+//const socket = io('http://localhost:3000');
 const socket = io('https://api-servidor-d8f1.onrender.com');
 
 const PanelAdministrativo = () => {
@@ -23,14 +25,6 @@ const PanelAdministrativo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isPageReloaded = sessionStorage.getItem('isPageReloaded');
-    if (!isPageReloaded) {
-      sessionStorage.setItem('isPageReloaded', 'true');
-      navigate('/');
-    }
-  }, [navigate]);
-
-  useEffect(() => {
     getProfile();
   }, [isAuthenticated]);
 
@@ -40,9 +34,9 @@ const PanelAdministrativo = () => {
       habitacionesFiltradasTemp = habitacionesFiltradasTemp.filter(habitacion => {
         switch (filtro) {
           case 'ocupada':
-            return habitacion?.estado === 'ocupada';
+            return habitacion?.estado === 1;
           case 'desocupada':
-            return habitacion?.estado === 'desocupada';
+            return habitacion?.estado === 0;
           case 'noMolestar':
             return habitacion.noMolestar === 1;
           case 'lavanderia':
@@ -68,7 +62,6 @@ const PanelAdministrativo = () => {
 
   useEffect(() => {
     const handleUpdateLavanderia = (data) => {
-      console.log(data);
       setHabitacionesFiltradas((prevState) =>
         prevState.map(habitacion =>
           habitacion.habitacionID === data.habitacionID ? { ...habitacion, lavanderia: data.valor } : habitacion
@@ -77,7 +70,6 @@ const PanelAdministrativo = () => {
     };
 
     const handleUpdateNoMolestar = (data) => {
-      console.log(data);
       setHabitacionesFiltradas((prevState) =>
         prevState.map(habitacion =>
           habitacion.habitacionID === data.habitacionID ? { ...habitacion, noMolestar: data.valor } : habitacion
@@ -86,7 +78,6 @@ const PanelAdministrativo = () => {
     };
 
     const handleUpdatePuerta = (data) => {
-      console.log(data);
       setHabitacionesFiltradas((prevState) =>
         prevState.map(habitacion =>
           habitacion.habitacionID === data.habitacionID ? { ...habitacion, puerta: data.valor } : habitacion
@@ -95,7 +86,6 @@ const PanelAdministrativo = () => {
     };
 
     const handleUpdateHouseKeeping = (data) => {
-      console.log(data);
       setHabitacionesFiltradas((prevState) =>
         prevState.map(habitacion =>
           habitacion.habitacionID === data.habitacionID ? { ...habitacion, houseKeeping: data.valor } : habitacion
@@ -104,7 +94,6 @@ const PanelAdministrativo = () => {
     };
 
     const handleUpdateCheckin = (data) => {
-      console.log(data);
       setHabitacionesFiltradas((prevState) =>
         prevState.map(habitacion =>
           habitacion.habitacionID === data.habitacionID ? { ...habitacion, checkin: data.valor } : habitacion
@@ -112,19 +101,29 @@ const PanelAdministrativo = () => {
       );
     };
 
+    const handleUpdateEstado = (data) => {
+      setHabitacionesFiltradas((prevState) =>
+        prevState.map(habitacion =>
+          habitacion.habitacionID === data.habitacionID ? { ...habitacion, estado: data.valor } : habitacion
+        )
+      );
+    };
+
     socket.on('updateLavanderia', handleUpdateLavanderia);
     socket.on('updateNoMolestar', handleUpdateNoMolestar);
     socket.on('puerta', handleUpdatePuerta);
-    socket.on('housekepping', handleUpdateHouseKeeping);
+    socket.on('housekeeping', handleUpdateHouseKeeping);
     socket.on('checkin', handleUpdateCheckin);
+    socket.on('estado', handleUpdateEstado);
 
     // Emitir eventos de WebSocket para actualizaciones
     habitacionesFiltradas.forEach((habitacion) => {
       socket.emit('updateLavanderia', { habitacionID: habitacion.habitacionID, valor: habitacion.lavanderia });
       socket.emit('updateNoMolestar', { habitacionID: habitacion.habitacionID, valor: habitacion.noMolestar });
       socket.emit('puerta', { habitacionID: habitacion.habitacionID, valor: habitacion.puerta });
-      socket.emit('housekepping', { habitacionID: habitacion.habitacionID, valor: habitacion.houseKeeping });
+      socket.emit('housekeeping', { habitacionID: habitacion.habitacionID, valor: habitacion.houseKeeping });
       socket.emit('checkin', { habitacionID: habitacion.habitacionID, valor: habitacion.checkin });
+      socket.emit('estado', { habitacionID: habitacion.habitacionID, valor: habitacion.estado });
     });
 
     return () => {
@@ -133,6 +132,7 @@ const PanelAdministrativo = () => {
       socket.off('updatePuerta', handleUpdatePuerta);
       socket.off('updateHouseKeeping', handleUpdateHouseKeeping);
       socket.off('updateCheckin', handleUpdateCheckin);
+      socket.off('estado', handleUpdateEstado);
     };
   }, [habitacionesFiltradas]);
 
@@ -206,12 +206,9 @@ const PanelAdministrativo = () => {
         </div>
         <div className={styles.statsAndLegend}>
           <div className={styles.ocupaciones}>
-            <div className={styles.habOcupadas}>
-              Ocupadas: {profile.userProfile?.hotel[0]?.habitaciones?.filter(habitacion => habitacion?.estado === 'ocupada').length || 0}
-            </div>
-            <div className={styles.habDesocupadas}>
-              Desocupadas: {profile.userProfile?.hotel[0]?.habitaciones?.filter(habitacion => habitacion?.estado === 'desocupada').length || 0}
-            </div>
+            {/* <div className={styles.habDesocupadas}>
+              Disponibles: {profile.userProfile?.hotel[0]?.habitaciones?.filter(habitacion => habitacion?.estado === 0).length || 0}
+            </div> */}
           </div>
           <div className={styles.legend}>
             <div className={styles.legendItem}>
@@ -238,13 +235,13 @@ const PanelAdministrativo = () => {
           <div className={styles.gridContainer}>
             {currentItems.map((habitacion) => (
               <div key={habitacion._id} className={styles.roomCardLink}>
-                <div className={`${styles.roomCard} ${styles[habitacion.estado]}`}>
-                  <div className={`${styles.cardHeader} ${styles[habitacion.estado]}`}>
+                <div className={`${styles.roomCard} ${habitacion.estado === 1 ? styles.ocupada : ''}`}>
+                  <div className={`${styles.cardHeader} ${habitacion.estado === 1 ? styles.ocupada : ''}`}>
                     <div className={styles.roomNumber}>
                       HAB {habitacion.numeroHabitacion}
                     </div>
                     <span className={styles.roomStatus}>
-                      {habitacion.estado === 'ocupada' ? <FaUsers className={styles.ocupadaIcon} /> : <FaUsers className={styles.desocupadaIcon} />}
+                      {habitacion.estado === 1 ? <FaUsers className={styles.ocupadaIcon} /> : <FaUsers className={styles.desocupadaIcon} />}
                     </span>
                   </div>
                   <div className={styles.iconsContainer}>

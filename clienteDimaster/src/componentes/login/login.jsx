@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from "./login.module.css";
 import image5 from "../../assets/imagen1.jpg"
 import { useAuth } from "../../context/authContext.jsx"
