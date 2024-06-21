@@ -1,10 +1,10 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './panelAdministrativo.module.css';
 import { useAuth } from '../../context/authContext';
 import { MdLocalLaundryService, MdOutlineCleaningServices, MdMeetingRoom, MdCheckCircle } from 'react-icons/md';
 import { TbHotelService } from 'react-icons/tb';
+import { IoMdBeer } from "react-icons/io";
 import { FaUsers } from 'react-icons/fa';
 import { useHotel } from '../../context/hotelContext';
 import NavBarLateral from '../navBarLateral/navBarLateral.jsx';
@@ -109,12 +109,21 @@ const PanelAdministrativo = () => {
       );
     };
 
+    const handleUpdateMiniBar = (data) => {
+      setHabitacionesFiltradas((prevState) =>
+        prevState.map(habitacion =>
+          habitacion.habitacionID === data.habitacionID ? { ...habitacion, miniBar: data.valor } : habitacion
+        )
+      );
+    };
+
     socket.on('updateLavanderia', handleUpdateLavanderia);
     socket.on('updateNoMolestar', handleUpdateNoMolestar);
     socket.on('puerta', handleUpdatePuerta);
     socket.on('housekeeping', handleUpdateHouseKeeping);
     socket.on('checkin', handleUpdateCheckin);
     socket.on('estado', handleUpdateEstado);
+    socket.on('miniBar', handleUpdateMiniBar);
 
     // Emitir eventos de WebSocket para actualizaciones
     habitacionesFiltradas.forEach((habitacion) => {
@@ -124,6 +133,7 @@ const PanelAdministrativo = () => {
       socket.emit('houseKeeping', { habitacionID: habitacion.habitacionID, valor: habitacion.houseKeeping });
       socket.emit('checkin', { habitacionID: habitacion.habitacionID, valor: habitacion.checkin });
       socket.emit('estado', { habitacionID: habitacion.habitacionID, valor: habitacion.estado });
+      socket.emit('miniBar', { habitacionID: habitacion.habitacionID, valor: habitacion.miniBar });
     });
 
     return () => {
@@ -133,6 +143,7 @@ const PanelAdministrativo = () => {
       socket.off('updateHouseKeeping', handleUpdateHouseKeeping);
       socket.off('updateCheckin', handleUpdateCheckin);
       socket.off('estado', handleUpdateEstado);
+      socket.off('miniBar', handleUpdateMiniBar);
     };
   }, [habitacionesFiltradas]);
 
@@ -261,6 +272,7 @@ const PanelAdministrativo = () => {
                         <MdLocalLaundryService className={`${styles.icon} ${habitacion.lavanderia === 1 ? styles.lavanderia : ''}`} title="Lavandería" />
                         <MdOutlineCleaningServices className={`${styles.icon} ${habitacion.houseKeeping === 1 ? styles.houseKeeping : ''}`} title="Housekeeping" />
                         <MdMeetingRoom className={`${styles.icon} ${habitacion.puerta === 1 ? styles.puerta : ''}`} title="Puerta" />
+                        <IoMdBeer className={`${styles.icon} ${habitacion.miniBar === 1 ? styles.miniBar : ''}`} title="Mini Bar" />
                         <MdCheckCircle className={`${styles.icon} ${habitacion.checkin === 1 ? styles.checkin : ''}`} title="Check-in" />
                       </>
                     )}
