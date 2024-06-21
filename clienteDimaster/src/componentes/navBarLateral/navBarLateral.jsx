@@ -120,6 +120,7 @@ const NavBarLateral = ({ idHotel, logout, profile, handleFilterChange }) => {
                   <ul className={styles.subMenu}>
                     <li className={styles.subLi}><Link className={styles.a} to="/dashboard/hoteles">Hoteles</Link></li>
                     <li className={styles.subLi}><Link className={styles.a} to="/dashboard/usuarios">Usuarios</Link></li>
+                    <li className={styles.subLi}><Link className={styles.a} to="/informes">Informes</Link></li>
                   </ul>
                 )}
               </li>

@@ -4,10 +4,10 @@ import { FaUser, FaEnvelope, FaPhone, FaMapMarker, FaUserTie, FaCalendarAlt, FaB
 import NavBarLateral from '../navBarLateral/navBarLateral';
 import usuario from "../../assets/usuario.png";
 
-const PerfilAdministrador = ({ administrador }) => {
+const PerfilAdministrador = () => {
   return (
     <div className={styles.container}>
-      <NavBarLateral />
+      <NavBarLateral profile={profile} logout={logout} handleFilterChange={handleFilterChange} />
       <div className={styles.profileContainer}>
         <div className={styles.profileCard}>
           <div className={styles.profileHeader}>

@@ -15,9 +15,10 @@ import DashboardHoteles from "./componentes/DashBoardHoteles/dashboardHoteles.js
 import DashboardHabitaciones from "./componentes/DashboarHabitaciones/dashbardHabitaciones.jsx";
 import Informes from "./componentes/informes/informes.jsx";
 
- import { useNavigate } from "react-router-dom";
 
 function App() {
+
+
   
   return (
     <AuthProvider>
