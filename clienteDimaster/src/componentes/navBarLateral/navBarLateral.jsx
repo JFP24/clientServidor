@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styles from './navBarLateral.module.css';
 import { FaBed, FaUserTie, FaBoxOpen, FaQuestionCircle, FaTools, FaSignOutAlt, FaBars, FaExclamationCircle, FaChevronDown, FaBroom } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { MdLocalLaundryService, MdOutlineCleaningServices, MdMeetingRoom, MdCheckCircle } from 'react-icons/md';
+import { TbHotelService } from 'react-icons/tb';
+import { IoMdBeer } from "react-icons/io";
 import logo from '../../assets/LogoDiseven en blanco-02.png';
 import io from 'socket.io-client';
 
@@ -89,21 +92,21 @@ const NavBarLateral = ({ idHotel, logout, profile, handleFilterChange }) => {
                 {lavanderiaCount > 0 && (
                   <li className={styles.li} onClick={() => handleNotificationClick('lavanderia')}>
                     <Link className={styles.a} to="#">
-                      <FaBoxOpen className={styles.icon}/> Lavandería <span className={styles.notification}>{lavanderiaCount}</span>
+                      <MdLocalLaundryService className={styles.icon}/> Lavandería <span className={styles.notification}>{lavanderiaCount}</span>
                     </Link>
                   </li>
                 )}
                 {noMolestarCount > 0 && (
                   <li className={styles.li} onClick={() => handleNotificationClick('noMolestar')}>
                     <Link className={styles.a} to="#">
-                      <FaExclamationCircle className={styles.icon}/> No Molestar <span className={styles.notification}>{noMolestarCount}</span>
+                      <TbHotelService className={styles.icon}/> No Molestar <span className={styles.notification}>{noMolestarCount}</span>
                     </Link>
                   </li>
                 )}
                 {houseKeepingCount > 0 && (
                   <li className={styles.li} onClick={() => handleNotificationClick('houseKeeping')}>
                     <Link className={styles.a} to="#">
-                      <FaTools className={styles.icon}/> Housekeeping <span className={styles.notification}>{houseKeepingCount}</span>
+                      <MdOutlineCleaningServices className={styles.icon}/> Housekeeping <span className={styles.notification}>{houseKeepingCount}</span>
                     </Link>
                   </li>
                 )}
