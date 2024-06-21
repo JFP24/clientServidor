@@ -148,8 +148,8 @@
 
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 2fr));
-  gap: 70px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
   overflow-y: auto; /* Permite el desplazamiento vertical */
 }
 
