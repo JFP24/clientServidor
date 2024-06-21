@@ -139,7 +139,7 @@
 }
 
 .puertaIcon {
-  color: rgb(251, 251, 10);
+  color: rgb(205, 205, 64);
 }
 
 .checkinIcon {
@@ -239,7 +239,7 @@
 }
 
 .icon.puerta {
-  color: rgb(255, 255, 11);
+  color: rgb(205, 205, 64);
   animation: pulseYellow 1s infinite;
 }
 
